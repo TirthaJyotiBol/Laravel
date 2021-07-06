@@ -40,3 +40,14 @@ Access Denied
 @route
 Route::view('/denied','denied');         // a denied page is linked in general 
 
+
+
+
+
+@Route Middleware
+Route::view('/bol','bol')->middleware('usercheck');  
+
+
+@kernel
+    protected $routeMiddleware = [ 'usercheck'=> \App\Http\Middleware\usercheck::class,   ];    //created routeMiddleware name =>'usercheck'
+}
