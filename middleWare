@@ -1,0 +1,42 @@
+@middleware ->
+
+create-> php artisan make:middleware middlewarename 
+        
+eg->     php artisan make:middleware userCheck
+
+
+@kernel -> 
+
+protected $middleware =[ \App\Http\Middleware\usercheck::class, ];                   //group middleware set with the name of our middleware
+     
+
+
+
+@userCheck ->
+
+
+class usercheck
+{
+    public function handle(Request $request, Closure $next)
+    {
+    
+        if($request->balance>1000) 
+        {
+        return redirect('denied');            //if condition is satisfied then you can access the whole website else you will be redirected to 'denide.blade.php'
+        }
+         return $next($request);
+         
+    }
+    
+@denied page
+
+<h1>
+Access Denied
+</h1>
+
+
+    
+    
+@route
+Route::view('/denied','denied');         // a denied page is linked in general 
+
